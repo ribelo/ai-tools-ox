@@ -183,7 +183,7 @@ impl ToolBuilder {
 }
 
 #[async_trait::async_trait]
-pub trait ToTool: fmt::Debug {
+pub trait ToTool: fmt::Debug + Send + Sync {
     fn to_tool(&self) -> Tool;
     async fn call_tool(&self, id: &str, input: serde_json::Value) -> ToolCallResult;
 }
